@@ -88,4 +88,8 @@ modules.order
 Module.symvers
 Mkfile.old
 
+#MY 
+test.* 
+trashcode/
+unused/
 
