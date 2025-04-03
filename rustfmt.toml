@@ -1,0 +1,41 @@
+# Версия Rust edition (2021, 2018, 2015)
+edition = "2021"
+
+# Общие настройки
+max_width                    = 100                 # Максимальная ширина строки
+hard_tabs                    = false               # Использовать пробелы вместо табов
+tab_spaces                   = 4                   # Количество пробелов на таб
+error_on_line_overflow       = true                # Ошибка при превышении ширины строки
+report_todo                  = "Always"            # Отмечать TODO комментарии
+report_fixme                 = "Always"            # Отмечать FIXME комментарии
+
+# Отступы и выравнивание
+indent_style                 = "Block"             # Стиль отступов ("Block" или "Visual")
+align_enum_variants          = true                # Выравнивать варианты enum
+align_function_params        = false               # Выравнивать параметры функций
+
+# Структуры и enum
+struct_lit_single_line       = true                # Разрешить литералы структур в одну строку
+enum_discrim_align_threshold = 0                   # Выравнивать дискриминанты enum
+match_arm_blocks             = true                # Блоки в руках match
+match_block_trailing_comma   = false               # Запятая после последнего элемента в match
+
+# Функции и where-клаузы
+fn_args_layout               = "Tall"              # Параметры функции в несколько строк
+where_single_line            = false               # Переносить where-клаузы на новую строку
+brace_style                  = "SameLineWhere"     # Расположение фигурных скобок
+
+# Импорты
+group_imports                = "StdExternalCrate"  # Группировать импорты
+reorder_imports              = false               # Сортировать импорты по алфавиту
+imports_granularity          = "Crate"             # Уровень группировки импортов
+
+# Строки и форматирование
+format_strings               = true               # Автоформатирование строк
+wrap_comments                = true               # Перенос длинных комментариев
+comment_width                = 80                 # Ширина комментариев
+chain_width                  = 60                 # Макс. длина цепочки методов перед переносом
+
+# Макросы
+format_macro_matchers        = true               # Форматировать тело макросов
+format_macro_bodies          = true               # Форматировать тела макросов
