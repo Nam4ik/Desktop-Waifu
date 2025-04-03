@@ -2,6 +2,7 @@
 #include <SDL2/SDL_opengl.h>
 #include <GL/gl.h>
 #include <SDL3/SDL_video.h>
+#include <SDL3/SDL_events.h>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
@@ -119,5 +120,5 @@ int Main3DWorker(int argc, char* argv[]) {
 }
 
 int MainGIFWorker(){
-  
+
 }

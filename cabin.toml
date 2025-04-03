@@ -1,0 +1,64 @@
+[package]
+name        = "Desktop-WF"
+version     = "0.1.0"
+authors     = ["Namilskyy <alive6863@gmail.com>"]
+edition     = "20"
+license     = "CC-BY-NC-SA 4.0"
+description = "Desktop mate analouge for GNU/Linux" 
+
+[flags]
+c_flags = ["-Iinclude", "-I/usr/include/SDL2", "-I/usr/include/assimp"]
+cxx_flags = ["-std=c++14", "-Iinclude", "-I/usr/include/SDL2", "-I/usr/include/assimp"]
+
+ld_flags = [
+    "-L/usr/lib",
+    "-lSDL2",
+    "-lGL",
+    "-lX11",
+    "-lwayland-client",
+    "-lassimp",
+    "-lgio-2.0"
+
+]
+
+
+[target.coordsys]
+type = "lib"
+sources = ["src/CoordSys.c"]
+lib_type = "shared"
+dependencies = []
+
+
+[target.wayland_window]
+type = "lib"
+sources = ["src/WaylandWindow.c"]
+lib_type = "shared"
+dependencies = []
+
+
+[target.x11_window]
+type = "lib"
+sources = ["src/XelevenWindow.c"]
+dependencies = []
+lib_type = "shared"
+
+
+[target.d_ipc_tk]
+type = "obj"
+sources = ["src/D-IPC-TK.c"]
+dependencies = ["coordsys"]
+
+
+[target.display]
+type = "obj"
+sources = ["src/Display.cpp"]
+dependencies = ["coordsys"]
+
+
+[target.main]
+type = "exe"
+sources = ["src/main.cpp"]
+link_objects = [
+    "target/release/libeditor.a",
+
+    "D-IPC

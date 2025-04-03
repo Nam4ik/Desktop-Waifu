@@ -1,0 +1,27 @@
+[package]
+name         = "Dekstop-WF"
+version      = "0.1.0"
+authors      = ["Namilskyy <alive6863@gmail.com>"]
+description  = "Desktop mate analogue for GNU/Linux"
+license      = "CC-BY-NC-SA 4.0"
+edition      = "2021"
+
+[dependencies]
+iced = { version = "0.12.1", features = ["wgpu", "multi-window", "image", "async-std"] } 
+sdl2 = { version = "0.37",   features = ["image, ttf, bundled"]}
+
+
+[[bin]]
+rustflags = ["-emit=obj"]
+name = "handler"
+path = "src/Handler.rs"
+
+[[bin]]
+rustflags = ["-emit=obj"]
+name = "editor"
+path = "src/Editor.rs"
+
+[[bin]]
+rustflags = ["-emit=obj"]
+name = "gui"
+path = "src/GUI.rs"
