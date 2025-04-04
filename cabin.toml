@@ -1,64 +1,65 @@
+
 [package]
-name        = "Desktop-WF"
+name        = "desktop-wf"
 version     = "0.1.0"
 authors     = ["Namilskyy <alive6863@gmail.com>"]
 edition     = "20"
 license     = "CC-BY-NC-SA 4.0"
-description = "Desktop mate analouge for GNU/Linux" 
+description = "Desktop mate analogue for GNU/Linux" 
 
-[flags]
 c_flags = ["-Iinclude", "-I/usr/include/SDL2", "-I/usr/include/assimp"]
 cxx_flags = ["-std=c++14", "-Iinclude", "-I/usr/include/SDL2", "-I/usr/include/assimp"]
+ld_flags = ["-L/usr/lib", "-lSDL2", "-lGL", "-lX11", "-lwayland-client", "-lassimp", "-lgio-2.0"]
+c_std = "ansi"
+cpp_std = "c++20"
 
-ld_flags = [
-    "-L/usr/lib",
-    "-lSDL2",
-    "-lGL",
-    "-lX11",
-    "-lwayland-client",
-    "-lassimp",
-    "-lgio-2.0"
-
-]
-
-
-[target.coordsys]
-type = "lib"
+# Libraries (array tables)
+[[lib]]
+name = "CoordSys"
+type = "shared"
 sources = ["src/CoordSys.c"]
-lib_type = "shared"
-dependencies = []
+includes = ["include"]
+links = ["GL"]
 
-
-[target.wayland_window]
-type = "lib"
+[[lib]]
+name = "WaylandWindow"
+type = "shared"
 sources = ["src/WaylandWindow.c"]
-lib_type = "shared"
-dependencies = []
+includes = ["include", "/usr/include/wayland"]
+links = ["wayland-client"]
 
-
-[target.x11_window]
-type = "lib"
+[[lib]]
+name = "XelevenWindow"
+type = "shared"
 sources = ["src/XelevenWindow.c"]
-dependencies = []
-lib_type = "shared"
+includes = ["include", "/usr/include/X11"]
+links = ["X11"]
 
-
-[target.d_ipc_tk]
-type = "obj"
+# Objects (array tables)
+[[object]]
+name = "D-IPC-TK"
 sources = ["src/D-IPC-TK.c"]
-dependencies = ["coordsys"]
+includes = ["include"]
+links = ["SDL2"]
 
-
-[target.display]
-type = "obj"
+[[object]]
+name = "Display"
 sources = ["src/Display.cpp"]
-dependencies = ["coordsys"]
+includes = ["include", "/usr/include/SDL2"]
+links = ["SDL2", "GL"]
 
-
-[target.main]
-type = "exe"
+[[object]]
+name = "main"
 sources = ["src/main.cpp"]
-link_objects = [
-    "target/release/libeditor.a",
+includes = ["include", "/usr/include/SDL2", "/usr/include/assimp"]
+links = ["SDL2", "GL", "assimp"]
 
-    "D-IPC
+[[object]]
+name = "test"
+sources = ["src/test.cpp"]
+includes = ["include", "/usr/include/SDL2"]
+links = ["SDL2"]
+
+[link]
+output = "final_binary"
+objects = ["D-IPC-TK.o", "Display.o", "main.o", "target/release/Ediotor.o", "target/release/Handler.o", "target/release/gui.o"]

@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 void GetScreen(){
-    Display *display = XOpenDisplay(NULL); //
+    Display *display = XOpenDisplay(NULL); 
     if (!display) {
         perror("Unable to connect XEleven window server.");
     }
@@ -19,7 +19,7 @@ void GetScreen(){
 }
 
 
-void GetWindows(Display *display, Window root, XWindowAttributes attrs){
+void GetWindow(Display *display, Window root, XWindowAttributes attrs){
   Window window;
   Window* children;
   //unsigned int nchildren;
@@ -69,4 +69,18 @@ void GetWindows(Display *display, Window root, XWindowAttributes attrs){
 
 }
 
+void GetAllWindows(Display *display, Window root){
+    Window parent, *children;
+    unsigned int nchildren;
 
+while(1){
+    if (XQueryTree(display, root, &root, &parent, &children, &nchildren)) {
+        for (unsigned int i = 0; i < nchildren; i++) {
+            GetScreen();
+            GetWindow(display, children[i], attrs);
+            GetAllWindows(display, children[i]);
+        }
+        XFree(children);
+    }
+ }
+}

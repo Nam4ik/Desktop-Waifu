@@ -8,8 +8,8 @@ edition      = "2021"
 
 [dependencies]
 iced = { version = "0.12.1", features = ["wgpu", "multi-window", "image", "async-std"] } 
-sdl2 = { version = "0.37",   features = ["image, ttf, bundled"]}
-
+sdl2 = { version = "0.37.0", features = ["c_vec", "unsafe_textures"]}
+tar  = { version = "0.4.43", features= ["xattr"]}
 
 [[bin]]
 rustflags = ["-emit=obj"]
