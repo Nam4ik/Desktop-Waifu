@@ -1,3 +1,5 @@
+//printf will be removed after stable work of code
+
 #include <wayland-client.h>
 #include <wlr-foreign-toplevel-management-unstable-v1-client-protocol.h>
 #include <stdio.h>
